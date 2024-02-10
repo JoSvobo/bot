@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot for JDM Slap Stickers</title>
+</head>
+<body>
+    <script>
+        // Function to perform Google search
+        function performGoogleSearch(query) {
+            window.location.href = "https://www.google.com/search?q=" + encodeURIComponent(query);
+        }
+
+        // Function to visit a website and stay for a specified duration
+        function visitWebsite(url, stayDuration) {
+            setTimeout(function() {
+                window.location.href = url;
+            }, stayDuration * 1000); // Convert seconds to milliseconds
+        }
+
+        // Function to generate a random integer between min and max (inclusive)
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        // Function to start the bot
+        function startBot() {
+            var numberOfIterations = 10;
+            var currentIteration = 0;
+
+            // Define the search query
+            var searchQuery = "Jdm slap stickers";
+
+            // Start the bot loop
+            function botLoop() {
+                currentIteration++;
+                if (currentIteration > numberOfIterations) {
+                    console.log("Bot has completed " + numberOfIterations + " iterations.");
+                    return;
+                }
+
+                console.log("Starting iteration " + currentIteration);
+
+                // Perform Google search
+                performGoogleSearch(searchQuery);
+
+                // Wait for the search results to load (5 seconds)
+                setTimeout(function() {
+                    // Visit toxicvinyls.com
+                    visitWebsite("https://toxicvinyls.com", 5);
+
+                    // After visiting toxicvinyls.com, wait for a random duration (10 to 30 seconds)
+                    setTimeout(function() {
+                        // Visit the clothing collection (https://toxicvinyls.com/collections/clothing)
+                        visitWebsite("https://toxicvinyls.com/collections/clothing", 20);
+
+                        // Continue to the next iteration after a random delay (30 to 60 seconds)
+                        setTimeout(botLoop, getRandomInt(30, 60));
+                    }, getRandomInt(10, 30) * 1000);
+                }, 5000); // Wait for 5 seconds
+            }
+
+            // Start the bot loop
+            botLoop();
+        }
+
+        // Start the bot when the page loads
+        window.onload = startBot;
+    </script>
+</body>
+</html>
