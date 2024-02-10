@@ -19,11 +19,6 @@
             }, stayDuration * 1000); // Convert seconds to milliseconds
         }
 
-        // Function to generate a random integer between min and max (inclusive)
-        function getRandomInt(min, max) {
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
-
         // Function to start the bot
         function startBot() {
             var numberOfIterations = 10;
@@ -45,7 +40,7 @@
                 // Perform Google search
                 performGoogleSearch(searchQuery);
 
-                // Wait for the search results to load (5 seconds)
+                // Continue to the next step after 5 seconds
                 setTimeout(function() {
                     // Visit toxicvinyls.com
                     visitWebsite("https://toxicvinyls.com", 5);
@@ -56,13 +51,18 @@
                         visitWebsite("https://toxicvinyls.com/collections/clothing", 20);
 
                         // Continue to the next iteration after a random delay (30 to 60 seconds)
-                        setTimeout(botLoop, getRandomInt(30, 60));
-                    }, getRandomInt(10, 30) * 1000);
+                        setTimeout(botLoop, getRandomInt(30, 60) * 1000); // Convert seconds to milliseconds
+                    }, getRandomInt(10, 30) * 1000); // Convert seconds to milliseconds
                 }, 5000); // Wait for 5 seconds
             }
 
             // Start the bot loop
             botLoop();
+        }
+
+        // Function to generate a random integer between min and max (inclusive)
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
         }
 
         // Start the bot when the page loads
